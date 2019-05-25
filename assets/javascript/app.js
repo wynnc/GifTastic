@@ -25,9 +25,24 @@ function buttonCreate() {
 
 buttonCreate();
 
-function displayTopic(data){
-  console.log(data.original);
-  // var animalGif = data.
+function displayTopic(dataTopic){
+  var results = dataTopic.data;
+  for(var i = 0; i < results.length; i++){
+    var gifDiv = $("<div>");
+
+    var rating = results[i].rating;
+    var p = $("<p>").text("Rating: " + rating);
+    
+    var animalImage = results[i].images.fixed_height.url;
+    // console.log("The rating is: " + rating + " and the image url is " + animalImage);
+    $("#animal-images").append(`<img src=${animalImage}>`)
+    // var gifImage = $("<img>");
+    // gifImage.attr("src", animalImage);
+    
+    // gifDiv.append(gifImage);
+    // $("#animal-images").append(gifDiv);
+  }
+
 }
 
       // pull ajax with desired animal by button push on click function
@@ -40,7 +55,9 @@ $("#gif-buttons").on("click", "button", function () {
     url: queryURL,
     method: "GET"
   }).then(function (response) {
+
     console.log(response);
+
     displayTopic(response);
   });
 })
