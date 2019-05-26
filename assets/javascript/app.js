@@ -23,31 +23,32 @@ function buttonCreate() {
   })
 }
 
-buttonCreate();
-
-function displayTopic(dataTopic){
+function displayTopic(dataTopic) {
+  $("#animal-images").empty();
   var results = dataTopic.data;
-  for(var i = 0; i < results.length; i++){
-    var gifDiv = $("<div>");
+
+  for (var i = 0; i < results.length; i++) {
 
     var rating = results[i].rating;
     var p = $("<p>").text("Rating: " + rating);
-    
-    var animalImage = results[i].images.fixed_height.url;
-    // console.log("The rating is: " + rating + " and the image url is " + animalImage);
-    $("#animal-images").append(`<img src=${animalImage}>`)
-    // var gifImage = $("<img>");
-    // gifImage.attr("src", animalImage);
-    
-    // gifDiv.append(gifImage);
-    // $("#animal-images").append(gifDiv);
-  }
+    var animalImage = results[i].images.fixed_height_still.url;
+    var dataStill = animalImage;
+    var dataAnimate = results[i].images.fixed_height.url;
 
+    $("#animal-images").append(`<img src=${animalImage} data-state="still" class="gif" data-still=${dataStill} data-animate=${dataAnimate}>`)
+
+  };
 }
+buttonCreate();
 
-      // pull ajax with desired animal by button push on click function
+
+// pull ajax with desired animal by button push on click function
 $("#gif-buttons").on("click", "button", function () {
   var animalTopic = $(this).attr("data-topic");
+
+// it should populate the page with 10 static images
+
+
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animalTopic + "&limit=10&api_key=" + myKey;
 
 
@@ -63,5 +64,31 @@ $("#gif-buttons").on("click", "button", function () {
 })
 
 
-      // it should populate the page with 10 static images
+$("#animal-images").on("click", "img", function () {
 
+
+  // Smake a variable named state and then store the image's data-state into it.
+  // Use the .attr() method for this.
+
+  var state = $(this).attr("data-state");
+  // =============================================
+
+  // Check if the variable state is equal to 'still',
+  console.log(state);
+  // then update the src attribute of this image to it's data-animate value,
+  // and update the data-state attribute to 'animate'.
+  if (state === "still") {
+    $(this).attr("data-state", "animate");
+
+    $(this).attr("src", $(this).attr("data-animate"));
+    // console.log($(this).attr("src"));
+  } else {
+    // If state is equal to 'animate', then update the src attribute of this
+    // image to it's data-still value and update the data-state attribute to 'still'
+
+    $(this).attr("data-state", "still");
+
+    $(this).attr("src", $(this).attr("data-still"));
+  }
+
+});
