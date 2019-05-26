@@ -11,7 +11,7 @@
 // make connection with gighpy api
 // Global variables
 var myKey = "rsnLAx7xzaoPLyiRDj394wOOJ3D3w6ul";
-var topics = ["eagle", "wolf", "bear", "walrus", "cheetah", "raven", "tiger", "shark"]
+var topics = ["eagle", "wolf", "bear", "walrus", "cheetah", "rabbit", "tiger", "shark", "giraffe", "dog", "cat"]
 // Example queryURL for Giphy API
 
 
@@ -34,9 +34,9 @@ function displayTopic(dataTopic) {
     var animalImage = results[i].images.fixed_height_still.url;
     var dataStill = animalImage;
     var dataAnimate = results[i].images.fixed_height.url;
-
+    
     $("#animal-images").append(`<img src=${animalImage} data-state="still" class="gif" data-still=${dataStill} data-animate=${dataAnimate}>`)
-
+  $("#animal-images").append(p);
   };
 }
 buttonCreate();
@@ -46,7 +46,7 @@ buttonCreate();
 $("#gif-buttons").on("click", "button", function () {
   var animalTopic = $(this).attr("data-topic");
 
-// it should populate the page with 10 static images
+  // it should populate the page with 10 static images
 
 
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animalTopic + "&limit=10&api_key=" + myKey;
@@ -57,7 +57,7 @@ $("#gif-buttons").on("click", "button", function () {
     method: "GET"
   }).then(function (response) {
 
-    console.log(response);
+    // console.log(response);
 
     displayTopic(response);
   });
@@ -74,7 +74,7 @@ $("#animal-images").on("click", "img", function () {
   // =============================================
 
   // Check if the variable state is equal to 'still',
-  console.log(state);
+  // console.log(state);
   // then update the src attribute of this image to it's data-animate value,
   // and update the data-state attribute to 'animate'.
   if (state === "still") {
@@ -93,15 +93,15 @@ $("#animal-images").on("click", "img", function () {
 
 });
 
-$("#addAnimal").on("click", function(event){
+$("#addAnimal").on("click", function (event) {
   // step off --- we've got this (overriding default submit button behavior)
   event.preventDefault();
   // .val() with empty parens GETS the value
-  
+
   var animal = $("#animalInput").val().trim();
   animal = animal.toLowerCase();
 
-  
+
   topics.push(animal);
   buttonCreate();
   // .val("") with something n the parens SETS the value
