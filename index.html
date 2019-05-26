@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css"
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>GifTastic</title>
 </head>
 
@@ -23,15 +23,20 @@
                 <div id="gif-buttons"></div>
             </div>
         </div>
+        <!-- <form id="movie-form">
+                <label for="movie-input">Add a New Movie</label>
+                <input type="text" id="movie-input"><br>
+                <input id="add-movie" type="submit" value="Add a New Movie">
+            </form> -->
         <form>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-2">
                 <label for="animalGiphy">Enter an animal</label>
-                <input type="text" class="form-control" id="addAnimal" aria-describedby="animalAddHelp"
+                <input type="text" class="form-control" id="animalInput" aria-describedby="animalAddHelp"
                     placeholder="Add Animal">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="addAnimal" type="submit" class="btn btn-primary">Submit</button>
         </form>
         <div id="animal-images">
             

@@ -92,3 +92,18 @@ $("#animal-images").on("click", "img", function () {
   }
 
 });
+
+$("#addAnimal").on("click", function(event){
+  // step off --- we've got this (overriding default submit button behavior)
+  event.preventDefault();
+  // .val() with empty parens GETS the value
+  
+  var animal = $("#animalInput").val().trim();
+  animal = animal.toLowerCase();
+
+  
+  topics.push(animal);
+  buttonCreate();
+  // .val("") with something n the parens SETS the value
+  $("#animalInput").val("");
+})
