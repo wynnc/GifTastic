@@ -11,7 +11,7 @@
 // make connection with gighpy api
 // Global variables
 var myKey = "rsnLAx7xzaoPLyiRDj394wOOJ3D3w6ul";
-var topics = ["eagle", "wolf", "bear", "walrus", "cheetah", "rabbit", "tiger", "shark", "giraffe", "dog", "cat"]
+var topics = ["bear", "walrus", "cheetah", "rabbit", "shark", "giraffe", "dog", "cat"]
 // Example queryURL for Giphy API
 
 
@@ -57,7 +57,7 @@ $("#gif-buttons").on("click", "button", function () {
     method: "GET"
   }).then(function (response) {
 
-    // console.log(response);
+     console.log(response);
 
     displayTopic(response);
   });
